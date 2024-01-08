@@ -42,6 +42,7 @@ class PayButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {
         makePayment();
+      //  print(paymentService.generateRef()); How to get refrerence 
       },
       child: Text('Pay Now Ozow'),
     );
@@ -54,5 +55,6 @@ class PayButton extends StatelessWidget {
       notifyUrl: "http://test.i-pay.co.za/responsetest.php",
       successUrl: "http://test.i-pay.co.za/responsetest.php",
     );
+    
   }
 }

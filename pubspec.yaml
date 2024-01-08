@@ -3,7 +3,7 @@
 #version: 0.0.1
 #homepage: https://github.com/Banel-Mgwevu/sa_ozow
 name: my_payment_ozow_package
-version: 0.3.0
+version: 0.3.1
 homepage: https://github.com/Banel-Mgwevu/sa_ozow
 description: >
   A Dart package facilitating seamless integration with the Ozow payment gateway.
@@ -20,6 +20,7 @@ dependencies:
     sdk: flutter
   http: ^0.13.6
   url_launcher: ^6.1.11
+  url_launcher_web: ^2.0.19
 
 dev_dependencies:
   flutter_test:

@@ -150,7 +150,7 @@ packages:
       path: "C:/Users/Banele Mgwevu/Desktop/Flutter Projects/my_payment_ozow_package(1)/my_payment_ozow_package"
       relative: false
     source: path
-    version: "0.3.0"
+    version: "0.3.1"
   path:
     dependency: transitive
     description:

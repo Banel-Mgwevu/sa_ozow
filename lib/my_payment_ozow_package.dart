@@ -5,6 +5,7 @@ import 'dart:convert';
 import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:math';
 
 class PaymentConfig {
   final String apiKey;
@@ -27,13 +28,24 @@ class PaymentService {
     var sha = sha512.convert(utf8.encode(inputString));
     return sha.toString();
   }
+  
+String generateRef() {
+  
+  
+  int minLength=10000; int maxLength=900000;
+  Random random = Random();
+  int randomNumber = minLength + random.nextInt(maxLength - minLength + 1);
+  
+  return 'ref-$randomNumber';
+}
+
 
   String generateRequestHash(double amount) {
     String siteCode = config.siteCode;
     String countryCode = 'ZA';
     String currencyCode = 'ZAR';
-    String transactionReference = 'monaa';
-    String bankReference = 'monaa';
+    String transactionReference = 'Ref';
+    String bankReference = 'Ref';
     String cancelUrl = 'http://test.i-pay.co.za/responsetest.php';
     String errorUrl = 'http://test.i-pay.co.za/responsetest.php';
     String successUrl = 'http://test.i-pay.co.za/responsetest.php';
@@ -72,8 +84,8 @@ class PaymentService {
     Map<String, dynamic> data = {
       "countryCode": "ZA",
       "amount": amount.toString(),
-      "transactionReference": "monaa",
-      "bankReference": "monaa",
+      "transactionReference": "Ref",
+      "bankReference": "Ref",
       "cancelUrl": cancelUrl,
       "currencyCode": "ZAR",
       "errorUrl": cancelUrl,
@@ -104,7 +116,7 @@ class PaymentService {
         var successResponseUrl = responseData['url']; // Assuming the URL is in a 'url' field of the response
 
         if (successResponseUrl != null && successResponseUrl.isNotEmpty) {
-          await launchUrl(Uri.parse(successResponseUrl)); // Opens successResponseUrl in the default browser
+          await launchUrl(Uri.parse(successResponseUrl),mode: LaunchMode.inAppWebView); // Opens successResponseUrl in the default browser
           print(successResponseUrl);
         } else {
           print('No valid URL found in the response.');
